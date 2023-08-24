@@ -1,18 +1,18 @@
 from flask import Flask, request, jsonify, render_template, Markup
 from flask_cors import CORS
-import statistics
-import pickle 
+# import statistics
+# import pickle 
 import yfinance as yf
-import numpy as np
+# import numpy as np
 import pandas as pd
-import tensorflow as tf
+# import tensorflow as tf
 import pandas as pd
 from bs4 import BeautifulSoup
 import matplotlib.pyplot as plt
 from urllib.request import urlopen
 from urllib.request import Request
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
-import statistics
+# import statistics
 
 # loaded_model = tf.keras.models.load_model("Model.h5")
 
@@ -128,7 +128,7 @@ def AMZNnews():
     df_scores = pd.DataFrame(scores)
     # print(df_scores)
     news = news.join(df_scores, rsuffix='_right')
-    news['Date'] = pd.to_datetime(news.Date).dt.date
+    news['Date'] = pd.to_datetime(news.Date, format='%b-%d-%y').dt.date
 
     unique_ticker = news['Ticker'].unique().tolist()
     news_dict = {name: news.loc[news['Ticker'] == name] for name in unique_ticker}
@@ -169,3 +169,6 @@ def AMZNnews():
     # ans1 = {k: v for k, v in zip(news['Headline'][:5], ans)}
     # print(ans1)
     return jsonify(ans1)
+
+if __name__ == "__main__":
+    app.run(debug=True)

@@ -14,11 +14,11 @@ export default function AMZN({
   barchart,
   piechart,
   news,
-  indicators,
+  // indicators,
 }) {
   return (
     <>
-      <Stocks>
+      <Stocks title="Latest Trends" headerText="Stocks Analysis">
         <div className="flex flex-wrap mt-4 justify-center">
           <div className="w-full mb-12 xl:mb-0 px-4">
             <div className="flex flex-wrap">
@@ -34,7 +34,7 @@ export default function AMZN({
             </div>
             <div className="flex flex-wrap mt-4">
               <div className="w-full mb-12 xl:mb-0 px-4">
-                <PageVisits indicators={indicators} />
+                {/* <PageVisits indicators={indicators} /> */}
               </div>
               <div className="w-full px-4">
                 <NewsTable news={news} />
@@ -52,7 +52,7 @@ export const getStaticProps = async () => {
   const barchart = await axios.get("http://127.0.0.1:5000/AMZNbarchart");
   const piechart = await axios.get("http://127.0.0.1:5000/AMZNpiechart");
   const news = await axios.get("http://127.0.0.1:5000/AMZNnews");
-  const indicators = await axios.get("http://127.0.0.1:5000/AMZNindicators");
+  // const indicators = await axios.get("http://127.0.0.1:5000/AMZNindicators");
   // console.log(res);
   return {
     props: {
@@ -60,7 +60,7 @@ export const getStaticProps = async () => {
       barchart: barchart.data,
       piechart: piechart.data,
       news: news.data,
-      indicators: indicators.data,
+      // indicators: indicators.data,
       //   piechart: piechart.data,
     },
   };
